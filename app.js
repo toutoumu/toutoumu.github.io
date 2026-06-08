@@ -1,14 +1,14 @@
 const APP_STORE_URL = "https://apps.apple.com/app/id6764205706";
 const CONTACT_EMAIL = "toutoumu88@gmail.com";
-const CONTACT_SUBJECT_EN = "FilesApp Product Inquiry";
-const CONTACT_SUBJECT_ZH = "FilesApp 产品咨询";
+const CONTACT_SUBJECT_EN = "FileZen Product Inquiry";
+const CONTACT_SUBJECT_ZH = "FileZen 产品咨询";
 
 const translations = {
   "zh-CN": {
     meta: {
-      title: "FilesApp - 在 iPhone 和 iPad 上统一管理本地与远程文件",
+      title: "FileZen - 在 iPhone 和 iPad 上统一管理本地与远程文件",
       description:
-        "FilesApp 是一款面向 iPhone 和 iPad 的文件管理应用，统一管理本地目录、外部挂载文件夹与 AList、WebDAV、SFTP、SMB 等远程来源，支持预览、播放、传输、对比、PDF 工具与加密容器。"
+        "FileZen 是一款面向 iPhone 和 iPad 的文件管理应用，统一管理本地目录、外部挂载文件夹与 OneDrive、Box、AList、WebDAV、SFTP、SMB 等远程来源，支持预览、播放、传输、对比、PDF 工具与加密容器。"
     },
     nav: {
       features: "功能",
@@ -21,13 +21,13 @@ const translations = {
       eyebrow: "iPhone & iPad 文件管理",
       title: "把本地文件、外部目录和远程服务器放到同一个工作区里。",
       text:
-        "FilesApp 面向真实文件工作流设计。你可以在一套界面里浏览、搜索、预览、传输、播放和编辑文件，不需要在 Documents、外部文件夹、AList、WebDAV、SFTP、SMB 之间来回切换。",
+        "FileZen 面向真实文件工作流设计。你可以在一套界面里浏览、搜索、预览、传输、播放和编辑文件，不需要在 Documents、外部文件夹、OneDrive、Box、AList、WebDAV、SFTP、SMB 之间来回切换。",
       ctaDownload: "App Store 下载",
       ctaFeatures: "查看核心功能",
       downloadNote: "支持 iPhone 和 iPad，可通过 App Store 获取。",
       pill1: "本地 Documents",
       pill2: "外部挂载目录",
-      pill3: "AList / WebDAV / SFTP / SMB",
+      pill3: "OneDrive / Box / AList / WebDAV / SFTP / SMB",
       pill4: "所有功能可免费使用，部分能力可通过激励广告解锁"
     },
     screen: {
@@ -40,8 +40,8 @@ const translations = {
       location2Type: "外部目录",
       location3Name: "家庭 NAS",
       location3Type: "SMB",
-      location4Name: "工作服务器",
-      location4Type: "WebDAV",
+      location4Name: "云端资料",
+      location4Type: "OneDrive",
       actionsTitle: "可直接操作",
       action1: "上传",
       action2: "下载",
@@ -128,9 +128,9 @@ const translations = {
     },
     protocols: {
       eyebrow: "连接能力",
-      title: "一套交互，同时覆盖本地、外部目录和常见远程协议",
+      title: "一套交互，同时覆盖本地、外部目录、第三方云盘和常见远程协议",
       text:
-        "FilesApp 把不同连接方式收敛到统一的文件服务层上，所以你不必为每种远程来源重新学习一套界面。",
+        "FileZen 把不同连接方式收敛到统一的文件服务层上，所以你不必为每种远程来源重新学习一套界面。OneDrive 和 Box 通过官方 OAuth 授权接入，适合把第三方云盘纳入同一个文件工作区。",
       card1: {
         title: "本地 Documents",
         text: "面向日常文件管理和工具输出的基础工作区。"
@@ -140,18 +140,26 @@ const translations = {
         text: "通过系统授权访问更多文件夹，把外部目录纳入同一视图。"
       },
       card3: {
+        title: "Microsoft OneDrive",
+        text: "通过官方 OAuth 授权接入，直接浏览、预览和传输 OneDrive 中的文件。"
+      },
+      card4: {
+        title: "Box",
+        text: "支持连接 Box 云端文件，把团队资料和个人文档放进统一文件视图。"
+      },
+      card5: {
         title: "AList / OpenList",
         text: "适合已有 AList 服务的远程文件访问、播放和传输。"
       },
-      card4: {
+      card6: {
         title: "WebDAV",
         text: "覆盖常见云盘、NAS 与自建文件服务的标准化接入方式。"
       },
-      card5: {
+      card7: {
         title: "SFTP",
         text: "适合开发机、服务器和受控环境中的安全文件访问。"
       },
-      card6: {
+      card8: {
         title: "SMB",
         text: "连接家庭 NAS、办公共享目录和局域网内常见存储设备。"
       }
@@ -161,7 +169,7 @@ const translations = {
       title: "从“找文件”到“处理文件”，一条链路尽量少跳转",
       card1: {
         title: "在手机上访问 NAS 或远程目录",
-        text: "连接 SMB、WebDAV、SFTP 或 AList 后，直接浏览文件树，按需预览、下载或播放远程内容。"
+        text: "连接 OneDrive、Box、SMB、WebDAV、SFTP 或 AList 后，直接浏览文件树，按需预览、下载或播放远程内容。"
       },
       card2: {
         title: "整理本地与远程之间的文件",
@@ -173,14 +181,14 @@ const translations = {
       },
       card4: {
         title: "在设备上构建自己的文件中心",
-        text: "通过下载中心、音乐播放列表、本地 Web 上传和加密容器，把 FilesApp 变成日常的个人文件入口。"
+        text: "通过下载中心、音乐播放列表、本地 Web 上传和加密容器，把 FileZen 变成日常的个人文件入口。"
       }
     },
     free: {
       eyebrow: "免费与激励",
       title: "核心思路是尽量让所有功能都能免费用",
       text:
-        "FilesApp 不想做“免费只能看看，真正功能都锁住”的产品。核心能力默认面向所有用户开放，部分高级功能会在特定阶段通过激励广告提供解锁时段；如果你希望长期无打扰使用，也可以选择会员方案。",
+        "FileZen 不想做“免费只能看看，真正功能都锁住”的产品。核心能力默认面向所有用户开放，部分高级功能会在特定阶段通过激励广告提供解锁时段；如果你希望长期无打扰使用，也可以选择会员方案。",
       card1: {
         title: "所有人都能体验完整能力",
         b1: "文件夹对比、文本对比、PDF 工具都不是永久封死",
@@ -203,7 +211,7 @@ const translations = {
     cta: {
       title: "为本地文件、远程存储和移动办公准备的统一入口",
       text:
-        "如果你希望在 iPhone 或 iPad 上更顺手地管理文件、访问服务器、播放媒体、核对差异并处理 PDF，FilesApp 更接近一个可长期使用的工作台。你可以先免费使用完整能力，再按自己的频率决定是否接受激励解锁或升级会员。",
+        "如果你希望在 iPhone 或 iPad 上更顺手地管理文件、访问服务器、播放媒体、核对差异并处理 PDF，FileZen 更接近一个可长期使用的工作台。你可以先免费使用完整能力，再按自己的频率决定是否接受激励解锁或升级会员。",
       download: "去 App Store 下载",
       contact: "联系开发者"
     },
@@ -216,9 +224,9 @@ const translations = {
   },
   en: {
     meta: {
-      title: "FilesApp - One workspace for local and remote files on iPhone and iPad",
+      title: "FileZen - One workspace for local and remote files on iPhone and iPad",
       description:
-        "FilesApp is a file manager for iPhone and iPad that brings together local folders, externally mounted directories, and remote sources like AList, WebDAV, SFTP, and SMB, with preview, playback, transfer, comparison, PDF tools, and encrypted containers."
+        "FileZen is a file manager for iPhone and iPad that brings together local folders, externally mounted directories, and remote sources like OneDrive, Box, AList, WebDAV, SFTP, and SMB, with preview, playback, transfer, comparison, PDF tools, and encrypted containers."
     },
     nav: {
       features: "Features",
@@ -231,13 +239,13 @@ const translations = {
       eyebrow: "File Management for iPhone & iPad",
       title: "Keep local files, mounted folders, and remote servers in one workspace.",
       text:
-        "FilesApp is built around real file workflows. Browse, search, preview, transfer, play, and edit files in one interface without jumping between Documents, external folders, AList, WebDAV, SFTP, and SMB.",
+        "FileZen is built around real file workflows. Browse, search, preview, transfer, play, and edit files in one interface without jumping between Documents, external folders, OneDrive, Box, AList, WebDAV, SFTP, and SMB.",
       ctaDownload: "Download on App Store",
       ctaFeatures: "Explore Features",
       downloadNote: "Available for iPhone and iPad through the App Store.",
       pill1: "Local Documents",
       pill2: "Mounted External Folders",
-      pill3: "AList / WebDAV / SFTP / SMB",
+      pill3: "OneDrive / Box / AList / WebDAV / SFTP / SMB",
       pill4: "All features are free to access, with some advanced actions unlocked through rewarded ads"
     },
     screen: {
@@ -250,8 +258,8 @@ const translations = {
       location2Type: "Mounted",
       location3Name: "Home NAS",
       location3Type: "SMB",
-      location4Name: "Work Server",
-      location4Type: "WebDAV",
+      location4Name: "Cloud Files",
+      location4Type: "OneDrive",
       actionsTitle: "Quick Actions",
       action1: "Upload",
       action2: "Download",
@@ -316,7 +324,7 @@ const translations = {
       },
       card4: {
         title: "A Toolbox for File Work",
-        text: "Beyond management, FilesApp includes tools for reviewing, comparing, and converting content.",
+        text: "Beyond management, FileZen includes tools for reviewing, comparing, and converting content.",
         b1: "Text compare and folder compare",
         b2: "Text to PDF, images to PDF, and merge PDF",
         b3: "Music playback with playlist management"
@@ -338,9 +346,9 @@ const translations = {
     },
     protocols: {
       eyebrow: "Connections",
-      title: "One interaction model across local storage, mounted folders, and common remote protocols",
+      title: "One interaction model across local storage, mounted folders, third-party cloud drives, and common remote protocols",
       text:
-        "FilesApp brings different connection methods into the same file service model, so you do not need to learn a new UI for each remote backend.",
+        "FileZen brings different connection methods into the same file service model, so you do not need to learn a new UI for each remote backend. OneDrive and Box connect through official OAuth authorization, making third-party cloud drives part of the same file workspace.",
       card1: {
         title: "Local Documents",
         text: "A base workspace for everyday file management and tool output."
@@ -350,18 +358,26 @@ const translations = {
         text: "Use system authorization to include more folders in the same workspace."
       },
       card3: {
+        title: "Microsoft OneDrive",
+        text: "Connect through official OAuth authorization to browse, preview, and transfer files in OneDrive."
+      },
+      card4: {
+        title: "Box",
+        text: "Connect Box cloud files and bring team assets or personal documents into one unified file view."
+      },
+      card5: {
         title: "AList / OpenList",
         text: "A practical option for remote access, playback, and transfers if you already use AList."
       },
-      card4: {
+      card6: {
         title: "WebDAV",
         text: "A standard path for cloud storage, NAS devices, and self-hosted file services."
       },
-      card5: {
+      card7: {
         title: "SFTP",
         text: "A strong fit for developer machines, servers, and controlled environments."
       },
-      card6: {
+      card8: {
         title: "SMB",
         text: "Connect home NAS devices, office shares, and common local network storage."
       }
@@ -371,7 +387,7 @@ const translations = {
       title: "Go from finding files to processing files with fewer context switches",
       card1: {
         title: "Access NAS and remote directories on mobile",
-        text: "Connect to SMB, WebDAV, SFTP, or AList and browse file trees, then preview, download, or play content as needed."
+        text: "Connect to OneDrive, Box, SMB, WebDAV, SFTP, or AList and browse file trees, then preview, download, or play content as needed."
       },
       card2: {
         title: "Organize files between local and remote",
@@ -383,14 +399,14 @@ const translations = {
       },
       card4: {
         title: "Build a personal file hub on your device",
-        text: "Use the download center, music playlists, local web upload, and encrypted containers to make FilesApp your everyday file entry point."
+        text: "Use the download center, music playlists, local web upload, and encrypted containers to make FileZen your everyday file entry point."
       }
     },
     free: {
       eyebrow: "Free & Rewards",
       title: "The goal is to keep the full app meaningfully usable for free",
       text:
-        "FilesApp is not designed as a free shell where the real features stay locked away. Core capabilities are available to everyone, while some advanced actions can be unlocked with rewarded ads for a period of time. Membership remains an option for a cleaner long-term experience.",
+        "FileZen is not designed as a free shell where the real features stay locked away. Core capabilities are available to everyone, while some advanced actions can be unlocked with rewarded ads for a period of time. Membership remains an option for a cleaner long-term experience.",
       card1: {
         title: "Everyone can try the full workflow",
         b1: "Folder compare, text compare, and PDF tools are not permanently blocked",
@@ -413,7 +429,7 @@ const translations = {
     cta: {
       title: "A unified workspace for local files, remote storage, and mobile productivity",
       text:
-        "If you want a smoother way to manage files, connect to servers, play media, review differences, and work with PDFs on iPhone or iPad, FilesApp is closer to a long-term workspace than a basic file shell. Start free, then decide whether rewarded access or membership fits your usage.",
+        "If you want a smoother way to manage files, connect to servers, play media, review differences, and work with PDFs on iPhone or iPad, FileZen is closer to a long-term workspace than a basic file shell. Start free, then decide whether rewarded access or membership fits your usage.",
       download: "Get it on the App Store",
       contact: "Contact Developer"
     },

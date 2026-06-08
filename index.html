@@ -6,7 +6,7 @@
   <title>FileZen - 在 iPhone 和 iPad 上统一管理本地与远程文件</title>
   <meta
     name="description"
-    content="FileZen 是一款面向 iPhone 和 iPad 的文件管理应用，统一管理本地目录、外部挂载文件夹与 AList、WebDAV、SFTP、SMB 等远程来源，支持预览、播放、传输、对比、PDF 工具与加密容器。"
+    content="FileZen 是一款面向 iPhone 和 iPad 的文件管理应用，统一管理本地目录、外部挂载文件夹与 OneDrive、Box、AList、WebDAV、SFTP、SMB 等远程来源，支持预览、播放、传输、对比、PDF 工具与加密容器。"
   >
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -49,7 +49,7 @@
           <h1 data-i18n="hero.title">把本地文件、外部目录和远程服务器放到同一个工作区里。</h1>
           <p class="hero-text" data-i18n="hero.text">
             FileZen 面向真实文件工作流设计。你可以在一套界面里浏览、搜索、预览、传输、播放和编辑文件，
-            不需要在 Documents、外部文件夹、AList、WebDAV、SFTP、SMB 之间来回切换。
+            不需要在 Documents、外部文件夹、OneDrive、Box、AList、WebDAV、SFTP、SMB 之间来回切换。
           </p>
           <div class="hero-actions">
             <a class="button button-primary app-store-link" href="https://apps.apple.com/app/id6764205706" target="_blank" rel="noreferrer" data-i18n="hero.ctaDownload">App Store 下载</a>
@@ -59,7 +59,7 @@
           <ul class="hero-pills" aria-label="Supported platforms and capabilities">
             <li data-i18n="hero.pill1">本地 Documents</li>
             <li data-i18n="hero.pill2">外部挂载目录</li>
-            <li data-i18n="hero.pill3">AList / WebDAV / SFTP / SMB</li>
+            <li data-i18n="hero.pill3">OneDrive / Box / AList / WebDAV / SFTP / SMB</li>
             <li data-i18n="hero.pill4">所有功能可免费使用，部分能力可通过激励广告解锁</li>
           </ul>
         </div>
@@ -79,7 +79,7 @@
                   <div class="screen-row"><span data-i18n="screen.location1Name">我的文件</span><span data-i18n="screen.location1Type">本地</span></div>
                   <div class="screen-row"><span data-i18n="screen.location2Name">项目资料</span><span data-i18n="screen.location2Type">外部目录</span></div>
                   <div class="screen-row"><span data-i18n="screen.location3Name">家庭 NAS</span><span data-i18n="screen.location3Type">SMB</span></div>
-                  <div class="screen-row"><span data-i18n="screen.location4Name">工作服务器</span><span data-i18n="screen.location4Type">WebDAV</span></div>
+                  <div class="screen-row"><span data-i18n="screen.location4Name">云端资料</span><span data-i18n="screen.location4Type">OneDrive</span></div>
                 </div>
               </div>
 
@@ -220,9 +220,9 @@
       <div class="container protocol-layout">
         <div class="section-heading narrow">
           <div class="eyebrow" data-i18n="protocols.eyebrow">连接能力</div>
-          <h2 data-i18n="protocols.title">一套交互，同时覆盖本地、外部目录和常见远程协议</h2>
+          <h2 data-i18n="protocols.title">一套交互，同时覆盖本地、外部目录、第三方云盘和常见远程协议</h2>
           <p data-i18n="protocols.text">
-            FileZen 把不同连接方式收敛到统一的文件服务层上，所以你不必为每种远程来源重新学习一套界面。
+            FileZen 把不同连接方式收敛到统一的文件服务层上，所以你不必为每种远程来源重新学习一套界面。OneDrive 和 Box 通过官方 OAuth 授权接入，适合把第三方云盘纳入同一个文件工作区。
           </p>
         </div>
 
@@ -236,20 +236,28 @@
             <p data-i18n="protocols.card2.text">通过系统授权访问更多文件夹，把外部目录纳入同一视图。</p>
           </div>
           <div class="protocol-card">
-            <span class="protocol-name" data-i18n="protocols.card3.title">AList / OpenList</span>
-            <p data-i18n="protocols.card3.text">适合已有 AList 服务的远程文件访问、播放和传输。</p>
+            <span class="protocol-name" data-i18n="protocols.card3.title">Microsoft OneDrive</span>
+            <p data-i18n="protocols.card3.text">通过官方 OAuth 授权接入，直接浏览、预览和传输 OneDrive 中的文件。</p>
           </div>
           <div class="protocol-card">
-            <span class="protocol-name" data-i18n="protocols.card4.title">WebDAV</span>
-            <p data-i18n="protocols.card4.text">覆盖常见云盘、NAS 与自建文件服务的标准化接入方式。</p>
+            <span class="protocol-name" data-i18n="protocols.card4.title">Box</span>
+            <p data-i18n="protocols.card4.text">支持连接 Box 云端文件，把团队资料和个人文档放进统一文件视图。</p>
           </div>
           <div class="protocol-card">
-            <span class="protocol-name" data-i18n="protocols.card5.title">SFTP</span>
-            <p data-i18n="protocols.card5.text">适合开发机、服务器和受控环境中的安全文件访问。</p>
+            <span class="protocol-name" data-i18n="protocols.card5.title">AList / OpenList</span>
+            <p data-i18n="protocols.card5.text">适合已有 AList 服务的远程文件访问、播放和传输。</p>
           </div>
           <div class="protocol-card">
-            <span class="protocol-name" data-i18n="protocols.card6.title">SMB</span>
-            <p data-i18n="protocols.card6.text">连接家庭 NAS、办公共享目录和局域网内常见存储设备。</p>
+            <span class="protocol-name" data-i18n="protocols.card6.title">WebDAV</span>
+            <p data-i18n="protocols.card6.text">覆盖常见云盘、NAS 与自建文件服务的标准化接入方式。</p>
+          </div>
+          <div class="protocol-card">
+            <span class="protocol-name" data-i18n="protocols.card7.title">SFTP</span>
+            <p data-i18n="protocols.card7.text">适合开发机、服务器和受控环境中的安全文件访问。</p>
+          </div>
+          <div class="protocol-card">
+            <span class="protocol-name" data-i18n="protocols.card8.title">SMB</span>
+            <p data-i18n="protocols.card8.text">连接家庭 NAS、办公共享目录和局域网内常见存储设备。</p>
           </div>
         </div>
       </div>
@@ -266,7 +274,7 @@
           <article class="workflow-card">
             <span class="workflow-step">01</span>
             <h3 data-i18n="workflow.card1.title">在手机上访问 NAS 或远程目录</h3>
-            <p data-i18n="workflow.card1.text">连接 SMB、WebDAV、SFTP 或 AList 后，直接浏览文件树，按需预览、下载或播放远程内容。</p>
+            <p data-i18n="workflow.card1.text">连接 OneDrive、Box、SMB、WebDAV、SFTP 或 AList 后，直接浏览文件树，按需预览、下载或播放远程内容。</p>
           </article>
 
           <article class="workflow-card">
