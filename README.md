@@ -4,11 +4,12 @@
 
 ## 文件说明
 
-- `index.html`：产品首页
-- `privacy.html`：隐私政策
-- `terms.html`：使用条款
+- `index.html`：FileZen产品首页
+- `privacy.html`：FileZen隐私政策
+- `terms.html`：FileZen使用条款
 - `styles.css`：统一样式
 - `script.js`：少量页面脚本
+- `app-ads.txt`：Google AdSense 配置文件,多个项目共用
 
 ## 发布方式
 
