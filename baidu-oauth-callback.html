@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百度网盘授权回调 - FileZen</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background-color: #fff;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        h1 {
+            font-size: 1.25rem;
+            margin: 0 0 12px;
+            color: #111;
+        }
+        p {
+            margin: 0;
+            color: #666;
+        }
+        .hint {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        .error {
+            color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">正在返回 FileZen...</h1>
+        <p id="message">请稍候，正在完成百度网盘授权。</p>
+        <p class="hint" id="hint"></p>
+    </div>
+
+    <script>
+        (function () {
+            var APP_CALLBACK_SCHEME = "baidunetdisk.com.toutoumu.FileZen://auth";
+            var params = new URLSearchParams(window.location.search);
+            var code = params.get("code");
+            var state = params.get("state") || "";
+            var error = params.get("error") || "";
+            var errorDescription = params.get("error_description") || "";
+
+            function buildAppCallbackURL() {
+                var query = new URLSearchParams();
+                if (code) {
+                    query.set("code", code);
+                    if (state) {
+                        query.set("state", state);
+                    }
+                    return APP_CALLBACK_SCHEME + "?" + query.toString();
+                }
+                if (error || errorDescription) {
+                    if (error) {
+                        query.set("error", error);
+                    }
+                    if (errorDescription) {
+                        query.set("error_description", errorDescription);
+                    }
+                    return APP_CALLBACK_SCHEME + "?" + query.toString();
+                }
+                return "";
+            }
+
+            var targetURL = buildAppCallbackURL();
+            var title = document.getElementById("title");
+            var message = document.getElementById("message");
+            var hint = document.getElementById("hint");
+
+            if (!targetURL) {
+                title.textContent = "未收到授权参数";
+                message.textContent = "请关闭此页面，并返回 FileZen 重新发起百度网盘授权。";
+                hint.textContent = "如果问题持续出现，请确认百度控制台中的回调地址已配置为 https://toutoumu.github.io/baidu-oauth-callback.html";
+                return;
+            }
+
+            if (error || errorDescription) {
+                title.textContent = "授权未完成";
+                message.className = "error";
+                message.textContent = errorDescription || error || "百度网盘授权失败。";
+                hint.textContent = "正在尝试返回 FileZen...";
+            }
+
+            window.location.replace(targetURL);
+
+            window.setTimeout(function () {
+                hint.innerHTML = '如果 App 没有自动打开，请手动返回 FileZen 后重试。<br>回调地址：<code>' + APP_CALLBACK_SCHEME + '</code>';
+            }, 1500);
+        })();
+    </script>
+</body>
+</html>
