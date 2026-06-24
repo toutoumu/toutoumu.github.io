@@ -10,6 +10,7 @@
 - `styles.css`：统一样式
 - `script.js`：少量页面脚本
 - `app-ads.txt`：Google AdSense 配置文件,多个项目共用
+- `baidu-oauth-callback.html`: 百度网盘授权回调
 
 ## 发布方式
 
