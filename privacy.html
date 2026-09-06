@@ -7,91 +7,216 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+            line-height: 1.65;
             color: #333;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px;
-            background-color: #f9f9f9;
+            background-color: #f6f7f9;
         }
         .container {
             background-color: #fff;
             padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
         }
-        h1 { border-bottom: 2px solid #eee; padding-bottom: 10px; color: #000; }
-        h2 { margin-top: 30px; color: #2c3e50; }
-        p, li { color: #555; }
-        ul { padding-left: 20px; }
-        .footer { margin-top: 50px; font-size: 0.9em; color: #888; text-align: center; }
+        h1 { border-bottom: 2px solid #eee; padding-bottom: 12px; color: #111; }
+        h2 { margin-top: 32px; color: #24364b; }
+        h3 { margin-top: 24px; color: #334e68; }
+        p, li { color: #4b5563; }
+        ul { padding-left: 22px; }
+        a { color: #0969da; }
+        .language-nav { margin-bottom: 24px; }
+        .language-nav a { margin-right: 16px; }
+        .notice {
+            padding: 14px 16px;
+            border-left: 4px solid #3b82f6;
+            background: #eff6ff;
+            border-radius: 6px;
+        }
+        .divider { margin: 56px 0; border: 0; border-top: 1px solid #ddd; }
+        .footer { margin-top: 48px; font-size: 0.9em; color: #777; text-align: center; }
+        @media (max-width: 600px) {
+            body { padding: 0; background: #fff; }
+            .container { padding: 24px 18px; border-radius: 0; box-shadow: none; }
+        }
     </style>
 </head>
 <body>
+<main class="container">
+    <nav class="language-nav" aria-label="Language">
+        <a href="#english">English</a>
+        <a href="#chinese">简体中文</a>
+    </nav>
 
-<div class="container">
-    <h1>Privacy Policy</h1>
-    <p><strong>Effective Date: June 9, 2026</strong></p>
+    <section id="english" lang="en">
+        <h1>FileZen Privacy Policy</h1>
+        <p><strong>Effective date: September 6, 2026</strong></p>
 
-    <p>Welcome to <strong>FileZen</strong>. We are committed to protecting your privacy. This Privacy Policy explains how we handle information and how integrated third-party services operate within our application. This policy complies with the Apple App Store Guidelines and the EU General Data Protection Regulation (GDPR).</p>
+        <p>This Privacy Policy explains how FileZen (whose project code name is FilesApp) handles data when you use local file management, remote services, previews and playback, transfers, background uploads, and advertising.</p>
 
-    <h2>1. Data Collection and Usage</h2>
-    <p><strong>The Application:</strong> We (the developers) do <strong>not</strong> collect, store, upload, or share any of your personally identifiable information. Any data you manage within the app, including SMB server credentials (addresses, usernames, passwords), is stored locally on your device or in your private iCloud storage (if enabled). We have no access to this data.</p>
+        <p class="notice"><strong>No developer file server:</strong> Except for the third-party services described below, the developer does not operate a backend that collects your files, cloud credentials, remote-server credentials, or in-app activity. Your files are not routed through a developer-operated server.</p>
 
-    <p><strong>Third-Party Services:</strong> This app integrates <strong>Google AdMob</strong> for advertising. AdMob may collect certain data to serve personalized or non-personalized ads, including:</p>
-    <ul>
-        <li>Device identifiers (e.g., IDFA, Advertising ID).</li>
-        <li>Device model and operating system version.</li>
-        <li>Coarse location data (derived from IP address).</li>
-        <li>Ad interaction data (clicks, views, duration).</li>
-    </ul>
+        <h2>1. Data processed by FileZen</h2>
+        <p>Depending on the features you choose to use, FileZen processes the following data on your device:</p>
+        <ul>
+            <li>Local and externally mounted file contents, names, and folder structures.</li>
+            <li>Remote server addresses, ports, root paths, usernames, passwords, and authentication tokens.</li>
+            <li>Cloud account display names and account identifiers, such as an email address returned by a cloud provider.</li>
+            <li>Remote file metadata, including names, paths, sizes, types, and modification dates.</li>
+            <li>Favorites, music playlists, upload and download records, preview data, thumbnails, and caches.</li>
+            <li>Player, editor, display, and app preference settings.</li>
+            <li>Operational logs kept on the device for troubleshooting.</li>
+        </ul>
+        <p>Favorites and music playlists store a server identifier and a logical relative path. When you access an item, FileZen resolves it using the current configuration for that server.</p>
 
-    <h2>2. Third-Party Cloud Integrations</h2>
-    <p>FileZen provides integration with third-party cloud storage providers, including but not limited to <strong>Microsoft OneDrive</strong> and <strong>Box</strong>.</p>
-    <ul>
-        <li><strong>Authentication:</strong> We use official OAuth 2.0 flows for authentication. Your credentials are processed directly by the respective providers and are never accessible to us.</li>
-        <li><strong>Data Access:</strong> We only access the files and folders you explicitly interact with. File metadata and content are transferred directly between your device and the cloud provider's servers.</li>
-    </ul>
+        <h2>2. Local storage and security</h2>
+        <ul>
+            <li>OneDrive, Box, and Baidu Netdisk refresh tokens are stored by cloud provider and server identifier in the iOS Keychain using a device-only protection level that becomes available after the first unlock. These tokens do not migrate through device backups.</li>
+            <li>Other server configuration, transfer records, and preferences are stored in the app container on your device.</li>
+            <li>Caches and temporary files are created only as needed for features you request, such as previewing, playing, editing, exporting, uploading, or downloading.</li>
+            <li>A connection to an HTTP server or another unencrypted endpoint that you configure may not provide the same transport protection as HTTPS.</li>
+        </ul>
 
-    <h2>3. Advertising and Tracking</h2>
-    <p>FileZen uses Google AdMob to display advertisements.</p>
-    <ul>
-        <li><strong>ATT Framework:</strong> In compliance with Apple’s App Tracking Transparency (ATT), we will ask for your permission before accessing your IDFA for tracking purposes.</li>
-        <li><strong>GDPR Compliance:</strong> For users located in the European Union (EU), we use a Consent Management Platform (CMP) to obtain your explicit consent before serving personalized ads.</li>
-    </ul>
+        <h2>3. Remote servers and cloud storage</h2>
+        <p>When you add and use AList, WebDAV, SFTP, SMB, OneDrive, Box, Baidu Netdisk, or another supported service, FileZen communicates directly with that service to perform actions you request, such as authentication, directory listing, file access, upload, download, range reads, preview, playback, copy, move, rename, or deletion.</p>
+        <p>OneDrive, Box, and Baidu Netdisk sign-in pages are provided by the respective provider. FileZen receives the tokens required to complete the authorization and may retrieve an account display name, email address, or account identifier so you can identify the saved connection. File content and metadata are sent only to the server or cloud provider you select and are not relayed through a developer-operated server.</p>
+        <p>Your use of a third-party cloud provider is also governed by that provider's privacy policy and account controls.</p>
 
-    <h2>4. In-App Purchases and Subscriptions</h2>
-    <p>FileZen offers in-app purchases and subscriptions.</p>
-    <ul>
-        <li><strong>Payment Processing:</strong> All transactions are handled securely by Apple via the <strong>App Store (StoreKit)</strong>.</li>
-        <li><strong>Data Access:</strong> We do not collect or have access to your credit card numbers, bank account details, or payment credentials. We only receive anonymous receipt information from Apple to validate your subscription status and provide access to premium features.</li>
-    </ul>
+        <h2>4. Background uploads</h2>
+        <p>When you explicitly add a file to the background upload queue, FileZen copies the selected file into a dedicated staging directory under Application Support so iOS can resume the task after suspension or relaunch. The staging directory and payload files are marked as excluded from iCloud and iTunes backups.</p>
+        <ul>
+            <li>Staged payloads are deleted immediately after a successful upload, cancellation, or deletion of the upload record.</li>
+            <li>A payload is retained while its task is paused or failed so you can retry it.</li>
+            <li>Remaining app data is removed when you uninstall FileZen, subject to iOS behavior.</li>
+            <li>A background task uploads only to the destination service that you selected.</li>
+        </ul>
 
-    <h2>5. Your GDPR Rights (EU Users)</h2>
-    <p>If you are a resident of the European Economic Area (EEA), you have the following rights under the GDPR:</p>
-    <ul>
-        <li><strong>Right to be Informed:</strong> Knowing how third parties collect your data.</li>
-        <li><strong>Right to Withdraw Consent:</strong> You can change your tracking preferences at any time in the app settings or iOS system settings.</li>
-        <li><strong>Right to Erasure:</strong> Since we do not store your personal data, there is no data for us to delete. You may reset your Advertising Identifier in your iOS settings to clear your ad profile.</li>
-    </ul>
+        <h2>5. Advertising and Google Mobile Ads</h2>
+        <p>FileZen uses the Google Mobile Ads SDK to display banner ads and rewarded ads that you choose to open. The SDK may process data such as:</p>
+        <ul>
+            <li>Coarse location inferred from an IP address.</li>
+            <li>Device or app identifiers available under iOS settings and the applicable consent state.</li>
+            <li>Ad impressions, ad interactions, and product interaction data.</li>
+            <li>Crash, performance, and other diagnostic information.</li>
+        </ul>
+        <p>Google may use this information for third-party advertising, advertising measurement, analytics, security, and fraud prevention. FileZen currently does not request App Tracking Transparency permission and does not itself request access to the IDFA. The identifiers available to Google still depend on iOS settings, Google SDK behavior, and any consent choices applicable in your region.</p>
+        <p>For more information, see <a href="https://policies.google.com/technologies/ads">How Google uses information for advertising</a> and <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>.</p>
 
-    <h2>6. Children's Privacy</h2>
-    <p>FileZen is not intended for children under the age of 13 (or 16 in certain jurisdictions). We do not knowingly collect personal information from children through third-party services.</p>
+        <h2>6. Sharing and developer access</h2>
+        <p>The developer does not sell your files, account information, or connection credentials and cannot remotely access data kept only in your app container or Keychain. Data is sent to another party only when necessary to provide a feature you request, including:</p>
+        <ul>
+            <li>Your selected remote server or cloud provider.</li>
+            <li>Apple system services that you invoke, such as system sharing, document picking, or App Store transactions.</li>
+            <li>Google for displaying and measuring ads.</li>
+        </ul>
+        <p>Operational logs remain on your device unless you deliberately share them, for example through a system share sheet or email.</p>
 
-    <h2>7. Changes to This Policy</h2>
-    <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. These changes are effective immediately after they are posted.</p>
+        <h2>7. Retention, deletion, and your choices</h2>
+        <ul>
+            <li>Server configurations and related Keychain tokens are kept until you delete that server. Deleting a cloud server also deletes its stored refresh token.</li>
+            <li>Upload and download records are kept until you delete them. Cache and preview files remain until FileZen removes them automatically, you clear them in cache management, or you uninstall the app.</li>
+            <li>You can remove local data by deleting server configurations, transfer records, local files, and caches in FileZen.</li>
+            <li>To delete files already uploaded to a third party, close a third-party account, revoke cloud authorization, or exercise choices over provider-side logs or advertising data, use the controls offered by the relevant provider.</li>
+        </ul>
 
-    <h2>8. Contact Us</h2>
-    <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us:</p>
-    <ul>
-        <li><strong>Developer:</strong>bin liu</li>
-        <li><strong>Email:</strong>toutoumu88@gmail.com</li>
-    </ul>
+        <h2>8. Children and sensitive content</h2>
+        <p>FileZen is not directed specifically to children under 13. Minors should use the app with guidance from a parent or guardian. Consider carefully before processing personal, confidential, or other sensitive content through remote services, background upload, system sharing, or advertising features.</p>
 
-    <div class="footer">
-        &copy; 2026 FileZen. All rights reserved.
-    </div>
-</div>
+        <h2>9. Changes and contact</h2>
+        <p>We may update this policy when app features, third-party SDKs, data practices, or legal requirements change. The current effective date will be shown on this page and in the app.</p>
+        <p>For privacy questions or reports, contact:</p>
+        <ul>
+            <li><strong>Developer:</strong> Bin Liu</li>
+            <li><strong>Email:</strong> <a href="mailto:toutoumu88@gmail.com">toutoumu88@gmail.com</a></li>
+        </ul>
+    </section>
 
+    <hr class="divider">
+
+    <section id="chinese" lang="zh-Hans">
+        <h1>FileZen 隐私政策</h1>
+        <p><strong>生效日期：2026 年 9 月 6 日</strong></p>
+
+        <p>本隐私政策说明 FileZen（项目代码名 FilesApp）在您使用本地文件管理、远程服务、预览与播放、文件传输、后台上传和广告功能时如何处理数据。</p>
+
+        <p class="notice"><strong>无开发者文件服务器：</strong>除下文明确列出的第三方服务外，开发者不运营用于收集您的文件、云盘凭据、远程服务器凭据或应用内行为的后端服务器。您的文件不会经由开发者运营的服务器中转。</p>
+
+        <h2>1. FileZen 处理的数据</h2>
+        <p>根据您主动使用的功能，FileZen 会在设备上处理：</p>
+        <ul>
+            <li>本地文件、外部挂载文件的内容、名称与目录结构。</li>
+            <li>远程服务器地址、端口、根路径、账号名、密码和认证令牌。</li>
+            <li>云账号显示名称及账号标识，例如云服务返回的邮箱地址。</li>
+            <li>远程文件名称、路径、大小、类型、修改时间等元数据。</li>
+            <li>收藏、音乐播放列表、上传下载记录、预览数据、缩略图与缓存。</li>
+            <li>播放器、编辑器、显示和应用偏好设置。</li>
+            <li>用于排查问题且仅保存在设备上的运行日志。</li>
+        </ul>
+        <p>收藏和音乐播放列表保存服务器主键与逻辑相对路径；访问条目时，FileZen 会根据该服务器的当前配置重新解析。</p>
+
+        <h2>2. 本地存储与安全</h2>
+        <ul>
+            <li>OneDrive、Box 和百度网盘的刷新令牌按云服务类型与服务器主键保存在 iOS Keychain，采用仅限本设备且首次解锁后可访问的保护级别，不随设备备份迁移。</li>
+            <li>其他服务器配置、传输记录和偏好设置保存在设备上的应用容器内。</li>
+            <li>缓存和临时文件仅在完成您要求的预览、播放、编辑、导出、上传或下载时创建。</li>
+            <li>您主动配置的 HTTP 或其他未加密连接可能无法提供与 HTTPS 相同的传输保护。</li>
+        </ul>
+
+        <h2>3. 远程服务器与云盘</h2>
+        <p>当您添加并使用 AList、WebDAV、SFTP、SMB、OneDrive、Box、百度网盘或其他受支持服务时，FileZen 会直接与该服务通信，以执行您要求的登录认证、目录读取、文件访问、上传、下载、范围读取、预览、播放、复制、移动、重命名或删除操作。</p>
+        <p>OneDrive、Box 和百度网盘登录页面由对应提供方处理。FileZen 会获得完成授权所需的令牌，并可能读取账号显示名称、邮箱或账号标识，以便您识别保存的连接。文件内容和元数据只会发送到您选择的服务器或云服务，不会经由开发者运营的服务器中转。第三方云服务还受其自身隐私政策和账号控制规则约束。</p>
+
+        <h2>4. 后台上传</h2>
+        <p>当您明确将文件加入后台上传队列时，为让 iOS 在应用被挂起或重新启动后恢复任务，FileZen 会把所选文件复制到 Application Support 下的专用暂存目录。暂存目录和文件均标记为不参与 iCloud 和 iTunes 备份。</p>
+        <ul>
+            <li>上传成功、取消或删除上传记录后，暂存文件会立即删除。</li>
+            <li>任务暂停或失败时会保留暂存文件，以便您重试。</li>
+            <li>卸载 FileZen 后，剩余应用数据会按 iOS 行为删除。</li>
+            <li>后台任务只会上传到您选定的目标服务。</li>
+        </ul>
+
+        <h2>5. 广告与 Google Mobile Ads</h2>
+        <p>FileZen 使用 Google Mobile Ads SDK 展示横幅广告和由您主动打开的激励广告。该 SDK 可能处理：</p>
+        <ul>
+            <li>由 IP 地址推断的大致位置。</li>
+            <li>在 iOS 设置和适用同意状态下可用的设备或应用标识符。</li>
+            <li>广告展示、广告互动和产品互动数据。</li>
+            <li>崩溃、性能和其他诊断信息。</li>
+        </ul>
+        <p>Google 可能将这些信息用于第三方广告、广告效果衡量、分析、安全和防欺诈。FileZen 当前不请求 App Tracking Transparency 权限，也不主动请求访问 IDFA；Google 实际可用的标识符仍取决于 iOS 设置、Google SDK 行为和您所在地区适用的同意选择。</p>
+        <p>详情请参阅 <a href="https://policies.google.com/technologies/ads">Google 如何将信息用于广告</a>和 <a href="https://policies.google.com/privacy">Google 隐私权政策</a>。</p>
+
+        <h2>6. 信息共享与开发者访问</h2>
+        <p>开发者不会出售您的文件、账号信息或连接凭据，也无法远程访问仅保存在应用容器或 Keychain 中的数据。仅在实现您主动请求的功能所必需时，数据才会发送给：</p>
+        <ul>
+            <li>您选择的远程服务器或云服务提供方。</li>
+            <li>您主动调用的 Apple 系统服务，例如系统分享、文件选择或 App Store 交易。</li>
+            <li>用于展示和衡量广告的 Google。</li>
+        </ul>
+        <p>运行日志默认留在设备上，只有在您主动通过系统分享、邮件等方式发送时，接收方才能获得您选择提供的内容。</p>
+
+        <h2>7. 保留、删除与您的选择</h2>
+        <ul>
+            <li>服务器配置和对应 Keychain 令牌会保留到您删除该服务器；删除云盘服务器也会删除其刷新令牌。</li>
+            <li>上传下载记录会保留到您删除记录；缓存和预览文件会保留到应用自动清理、您在缓存管理中清理或卸载应用。</li>
+            <li>您可以在 FileZen 中删除服务器配置、传输记录、本地文件和缓存，以移除本地数据。</li>
+            <li>如需删除已上传到第三方的文件、注销第三方账号、撤回云盘授权，或管理服务端日志与广告数据，请使用对应提供方提供的控制方式。</li>
+        </ul>
+
+        <h2>8. 儿童与敏感内容</h2>
+        <p>FileZen 并非专门面向 13 岁以下儿童。未成年人应在监护人指导下使用。请谨慎选择是否通过远程服务、后台上传、系统分享或广告功能处理个人、机密或其他敏感内容。</p>
+
+        <h2>9. 政策变更与联系</h2>
+        <p>当应用功能、第三方 SDK、数据处理方式或法律要求发生变化时，我们可能更新本政策。当前生效日期会显示在本页面和应用内。</p>
+        <p>如有隐私问题或报告，请联系：</p>
+        <ul>
+            <li><strong>开发者：</strong>Bin Liu</li>
+            <li><strong>邮箱：</strong><a href="mailto:toutoumu88@gmail.com">toutoumu88@gmail.com</a></li>
+        </ul>
+    </section>
+
+    <div class="footer">&copy; 2026 FileZen. All rights reserved.</div>
+</main>
 </body>
 </html>
