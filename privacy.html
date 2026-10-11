@@ -51,9 +51,9 @@
 
     <section id="english" lang="en">
         <h1>FileZen Privacy Policy</h1>
-        <p><strong>Effective date: September 6, 2026</strong></p>
+        <p><strong>Effective date: October 11, 2026</strong></p>
 
-        <p>This Privacy Policy explains how FileZen (whose project code name is FilesApp) handles data when you use local file management, remote services, previews and playback, transfers, background uploads, and advertising.</p>
+        <p>This Privacy Policy explains how FileZen (whose project code name is FilesApp) handles data when you use local file management, remote services, previews and playback, transfers, folder synchronization, photo-library backup, background uploads, and advertising.</p>
 
         <p class="notice"><strong>No developer file server:</strong> Except for the third-party services described below, the developer does not operate a backend that collects your files, cloud credentials, remote-server credentials, or in-app activity. Your files are not routed through a developer-operated server.</p>
 
@@ -64,7 +64,8 @@
             <li>Remote server addresses, ports, root paths, usernames, passwords, and authentication tokens.</li>
             <li>Cloud account display names and account identifiers, such as an email address returned by a cloud provider.</li>
             <li>Remote file metadata, including names, paths, sizes, types, and modification dates.</li>
-            <li>Favorites, music playlists, upload and download records, preview data, thumbnails, and caches.</li>
+            <li>Photos and videos that you authorize FileZen to access when you use photo-library upload or incremental backup.</li>
+            <li>Favorites, recently opened history, music playlists, upload and download records, folder-sync tasks and run history, photo-backup settings and history, preview data, thumbnails, and caches.</li>
             <li>Player, editor, display, and app preference settings.</li>
             <li>Operational logs kept on the device for troubleshooting.</li>
         </ul>
@@ -73,7 +74,8 @@
         <h2>2. Local storage and security</h2>
         <ul>
             <li>OneDrive, Box, and Baidu Netdisk refresh tokens are stored by cloud provider and server identifier in the iOS Keychain using a device-only protection level that becomes available after the first unlock. These tokens do not migrate through device backups.</li>
-            <li>Other server configuration, transfer records, and preferences are stored in the app container on your device.</li>
+            <li>Passwords for WebDAV, AList, FTP, SFTP, and SMB servers are stored by protocol and server identifier using the same device-only iOS Keychain protection. When upgrading from an older version, FileZen removes a legacy plaintext password from its saved configuration only after the Keychain write succeeds.</li>
+            <li>Non-sensitive server settings, transfer records, backup and synchronization records, and preferences are stored in the app container on your device.</li>
             <li>Caches and temporary files are created only as needed for features you request, such as previewing, playing, editing, exporting, uploading, or downloading.</li>
             <li>A connection to an HTTP server or another unencrypted endpoint that you configure may not provide the same transport protection as HTTPS.</li>
         </ul>
@@ -83,16 +85,27 @@
         <p>OneDrive, Box, and Baidu Netdisk sign-in pages are provided by the respective provider. FileZen receives the tokens required to complete the authorization and may retrieve an account display name, email address, or account identifier so you can identify the saved connection. File content and metadata are sent only to the server or cloud provider you select and are not relayed through a developer-operated server.</p>
         <p>Your use of a third-party cloud provider is also governed by that provider's privacy policy and account controls.</p>
 
-        <h2>4. Background uploads</h2>
-        <p>When you explicitly add a file to the background upload queue, FileZen copies the selected file into a dedicated staging directory under Application Support so iOS can resume the task after suspension or relaunch. The staging directory and payload files are marked as excluded from iCloud and iTunes backups.</p>
+        <h2>4. Photo library and incremental backup</h2>
+        <p>FileZen requests read access to your photo library only when you use a feature that needs to browse or back up photos or videos. FileZen processes only the items available under the access level you grant, including limited-library access. It does not delete or modify items in your system photo library.</p>
         <ul>
-            <li>Staged payloads are deleted immediately after a successful upload, cancellation, or deletion of the upload record.</li>
-            <li>A payload is retained while its task is paused or failed so you can retry it.</li>
+            <li>When you create an incremental backup, you choose the destination remote server and folder, the media types to include, and whether FileZen creates year or month folders.</li>
+            <li>FileZen saves the Photos local identifier, media type, logical destination path, and transfer state needed to detect new items and resume or retry your backup. The backup database does not contain a private copy of the photo or video.</li>
+            <li>When a queued item runs, FileZen asks Photos for the system-managed original and streams it directly to the remote destination you selected. It does not route the file through a developer-operated server or create a complete private staging copy when a stable Photos identifier is available.</li>
+            <li>Removing a photo-backup task deletes its local settings, upload records, and deduplication history, but it does not delete files that have already been uploaded to your remote destination.</li>
+        </ul>
+        <p>Photo-library scans and backups are started by you. FileZen may request a limited amount of iOS background execution time for an active transfer, but iOS can suspend the app at any time and FileZen does not promise continuous, scheduled, or fully automatic background scanning.</p>
+
+        <h2>5. Transfers, synchronization, and background uploads</h2>
+        <p>When you explicitly add a regular file from a system picker to the background upload queue, FileZen may copy it into a dedicated staging directory under Application Support so the task can be retried after suspension or relaunch. The staging directory and payload files are marked as excluded from iCloud and iTunes backups.</p>
+        <ul>
+            <li>A staged payload is deleted after a successful upload or when you delete its upload record. It is retained while the task is paused, failed, or canceled so you can retry it.</li>
+            <li>Photo-library items with a stable Photos identifier use the direct system-managed streaming path described above instead of this regular-file staging directory. A managed payload is used only when a stable reference is unavailable or another operation requires a local file.</li>
+            <li>Folder synchronization, mirror backup, cross-server transfer, and content hashing use bounded streaming or range reads where supported. A destination service may temporarily contain a hidden partial or backup file while FileZen safely commits or rolls back an operation.</li>
             <li>Remaining app data is removed when you uninstall FileZen, subject to iOS behavior.</li>
             <li>A background task uploads only to the destination service that you selected.</li>
         </ul>
 
-        <h2>5. Advertising and Google Mobile Ads</h2>
+        <h2>6. Advertising and Google Mobile Ads</h2>
         <p>FileZen uses the Google Mobile Ads SDK to display banner ads and rewarded ads that you choose to open. It uses Google User Messaging Platform (UMP) to gather and manage advertising consent where applicable. FileZen initializes and loads ads only when UMP indicates that ads can be requested. When Google requires a privacy-options entry point, you can review or change your choices from Settings. The SDK may process data such as:</p>
         <ul>
             <li>Coarse location inferred from an IP address.</li>
@@ -103,7 +116,7 @@
         <p>Google may use this information for third-party advertising, advertising measurement, analytics, security, and fraud prevention. FileZen currently does not request App Tracking Transparency permission and does not itself request access to the IDFA. The identifiers available to Google still depend on iOS settings, Google SDK behavior, and any consent choices applicable in your region.</p>
         <p>For more information, see <a href="https://policies.google.com/technologies/ads">How Google uses information for advertising</a> and <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>.</p>
 
-        <h2>6. Sharing and developer access</h2>
+        <h2>7. Sharing and developer access</h2>
         <p>The developer does not sell your files, account information, or connection credentials and cannot remotely access data kept only in your app container or Keychain. Data is sent to another party only when necessary to provide a feature you request, including:</p>
         <ul>
             <li>Your selected remote server or cloud provider.</li>
@@ -112,18 +125,19 @@
         </ul>
         <p>Operational logs remain on your device unless you deliberately share them, for example through a system share sheet or email.</p>
 
-        <h2>7. Retention, deletion, and your choices</h2>
+        <h2>8. Retention, deletion, and your choices</h2>
         <ul>
-            <li>Server configurations and related Keychain tokens are kept until you delete that server. Deleting a cloud server also deletes its stored refresh token.</li>
-            <li>Upload and download records are kept until you delete them. Cache and preview files remain until FileZen removes them automatically, you clear them in cache management, or you uninstall the app.</li>
+            <li>Server configurations and related Keychain passwords or tokens are kept until you delete that server. Deleting a server also deletes the corresponding stored credential.</li>
+            <li>Upload, download, synchronization, backup, favorites, and recently opened records are kept until you delete them, until an applicable in-app retention limit removes older records, or until you uninstall FileZen. Deleting a local task or record does not undo a completed remote upload, copy, move, or deletion.</li>
+            <li>Cache, preview, and temporary files remain until FileZen removes them automatically, you clear them in cache management, or you uninstall the app. Regular-file upload payloads may remain after pause, failure, or cancellation so you can retry, and are removed after success or record deletion.</li>
             <li>You can remove local data by deleting server configurations, transfer records, local files, and caches in FileZen.</li>
             <li>To delete files already uploaded to a third party, close a third-party account, revoke cloud authorization, or exercise choices over provider-side logs or advertising data, use the controls offered by the relevant provider.</li>
         </ul>
 
-        <h2>8. Children and sensitive content</h2>
+        <h2>9. Children and sensitive content</h2>
         <p>FileZen is not directed specifically to children under 13. Minors should use the app with guidance from a parent or guardian. Consider carefully before processing personal, confidential, or other sensitive content through remote services, background upload, system sharing, or advertising features.</p>
 
-        <h2>9. Changes and contact</h2>
+        <h2>10. Changes and contact</h2>
         <p>We may update this policy when app features, third-party SDKs, data practices, or legal requirements change. The current effective date will be shown on this page and in the app.</p>
         <p>For privacy questions or reports, contact:</p>
         <ul>
@@ -136,9 +150,9 @@
 
     <section id="chinese" lang="zh-Hans">
         <h1>FileZen 隐私政策</h1>
-        <p><strong>生效日期：2026 年 9 月 6 日</strong></p>
+        <p><strong>生效日期：2026 年 10 月 11 日</strong></p>
 
-        <p>本隐私政策说明 FileZen（项目代码名 FilesApp）在您使用本地文件管理、远程服务、预览与播放、文件传输、后台上传和广告功能时如何处理数据。</p>
+        <p>本隐私政策说明 FileZen（项目代码名 FilesApp）在您使用本地文件管理、远程服务、预览与播放、文件传输、文件夹同步、系统相册备份、后台上传和广告功能时如何处理数据。</p>
 
         <p class="notice"><strong>无开发者文件服务器：</strong>除下文明确列出的第三方服务外，开发者不运营用于收集您的文件、云盘凭据、远程服务器凭据或应用内行为的后端服务器。您的文件不会经由开发者运营的服务器中转。</p>
 
@@ -149,7 +163,8 @@
             <li>远程服务器地址、端口、根路径、账号名、密码和认证令牌。</li>
             <li>云账号显示名称及账号标识，例如云服务返回的邮箱地址。</li>
             <li>远程文件名称、路径、大小、类型、修改时间等元数据。</li>
-            <li>收藏、音乐播放列表、上传下载记录、预览数据、缩略图与缓存。</li>
+            <li>当您使用相册上传或增量备份时，您授权 FileZen 访问的照片和视频。</li>
+            <li>收藏、最近打开历史、音乐播放列表、上传下载记录、文件夹同步任务与运行历史、相册备份设置与历史、预览数据、缩略图与缓存。</li>
             <li>播放器、编辑器、显示和应用偏好设置。</li>
             <li>用于排查问题且仅保存在设备上的运行日志。</li>
         </ul>
@@ -158,7 +173,8 @@
         <h2>2. 本地存储与安全</h2>
         <ul>
             <li>OneDrive、Box 和百度网盘的刷新令牌按云服务类型与服务器主键保存在 iOS Keychain，采用仅限本设备且首次解锁后可访问的保护级别，不随设备备份迁移。</li>
-            <li>其他服务器配置、传输记录和偏好设置保存在设备上的应用容器内。</li>
+            <li>WebDAV、AList、FTP、SFTP 和 SMB 的密码按协议与服务器主键使用相同的仅限本设备保护级别保存在 iOS Keychain。由旧版本升级时，只有在 Keychain 写入成功后，FileZen 才会清除旧服务器配置中的明文密码。</li>
+            <li>不敏感的服务器设置、传输记录、备份与同步记录和偏好设置保存在设备上的应用容器内。</li>
             <li>缓存和临时文件仅在完成您要求的预览、播放、编辑、导出、上传或下载时创建。</li>
             <li>您主动配置的 HTTP 或其他未加密连接可能无法提供与 HTTPS 相同的传输保护。</li>
         </ul>
@@ -167,16 +183,27 @@
         <p>当您添加并使用 AList、WebDAV、SFTP、SMB、OneDrive、Box、百度网盘或其他受支持服务时，FileZen 会直接与该服务通信，以执行您要求的登录认证、目录读取、文件访问、上传、下载、范围读取、预览、播放、复制、移动、重命名或删除操作。</p>
         <p>OneDrive、Box 和百度网盘登录页面由对应提供方处理。FileZen 会获得完成授权所需的令牌，并可能读取账号显示名称、邮箱或账号标识，以便您识别保存的连接。文件内容和元数据只会发送到您选择的服务器或云服务，不会经由开发者运营的服务器中转。第三方云服务还受其自身隐私政策和账号控制规则约束。</p>
 
-        <h2>4. 后台上传</h2>
-        <p>当您明确将文件加入后台上传队列时，为让 iOS 在应用被挂起或重新启动后恢复任务，FileZen 会把所选文件复制到 Application Support 下的专用暂存目录。暂存目录和文件均标记为不参与 iCloud 和 iTunes 备份。</p>
+        <h2>4. 系统相册与增量备份</h2>
+        <p>只有当您使用需要浏览或备份照片、视频的功能时，FileZen 才会请求读取系统相册。FileZen 只处理您所授予访问级别下可用的项目，包括“有限照片”授权范围；不会删除或修改系统相册中的项目。</p>
         <ul>
-            <li>上传成功、取消或删除上传记录后，暂存文件会立即删除。</li>
-            <li>任务暂停或失败时会保留暂存文件，以便您重试。</li>
+            <li>创建增量备份时，由您选择目标远程服务器和目录、需要包含的媒体类型，以及是否按年份或月份创建目录。</li>
+            <li>FileZen 会保存用于发现新增项目以及恢复或重试备份所必需的 Photos 本地标识、媒体类型、逻辑目标路径和传输状态；备份数据库不包含照片或视频的私有副本。</li>
+            <li>队列项目执行时，FileZen 会向 Photos 重新取得系统管理的原始资源，并直接以流式方式上传到您选择的远程目标。具有稳定 Photos 标识时，不会经由开发者运营的服务器，也不会创建完整的私有暂存副本。</li>
+            <li>删除相册备份任务会删除本地设置、上传记录和去重历史，但不会删除已经上传到远程目标的文件。</li>
+        </ul>
+        <p>相册扫描和备份由您手动启动。FileZen 可能为正在进行的传输申请有限的 iOS 后台执行时间，但 iOS 可随时挂起应用，因此 FileZen 不承诺持续、定时或完全自动的后台扫描。</p>
+
+        <h2>5. 文件传输、同步与后台上传</h2>
+        <p>当您明确把通过系统文件选择器取得的普通文件加入后台上传队列时，为让任务可在应用挂起或重启后重试，FileZen 可能会把文件复制到 Application Support 下的专用暂存目录。暂存目录和文件均标记为不参与 iCloud 和 iTunes 备份。</p>
+        <ul>
+            <li>普通文件暂存载荷会在上传成功或您删除上传记录后清理；暂停、失败或取消时会保留，以便您重试。</li>
+            <li>具有稳定 Photos 标识的相册项目使用上文所述的系统资源直读与流式上传，不进入普通文件暂存目录。只有无法取得稳定引用或其他操作要求本地文件时，才会使用受管理的暂存载荷。</li>
+            <li>文件夹同步、镜像备份、跨服务器传输和内容哈希在服务支持时使用有界流或 Range 分片读取。为安全提交或回滚操作，目标服务中可能短期存在隐藏的半成品文件或备份文件。</li>
             <li>卸载 FileZen 后，剩余应用数据会按 iOS 行为删除。</li>
             <li>后台任务只会上传到您选定的目标服务。</li>
         </ul>
 
-        <h2>5. 广告与 Google Mobile Ads</h2>
+        <h2>6. 广告与 Google Mobile Ads</h2>
         <p>FileZen 使用 Google Mobile Ads SDK 展示横幅广告和由您主动打开的激励广告，并使用 Google User Messaging Platform（UMP）在适用地区获取和管理广告相关同意。FileZen 仅在 UMP 表示可以请求广告后初始化和加载广告；当 Google 要求提供隐私选项入口时，您可以从设置页查看或修改选择。该 SDK 可能处理：</p>
         <ul>
             <li>由 IP 地址推断的大致位置。</li>
@@ -187,7 +214,7 @@
         <p>Google 可能将这些信息用于第三方广告、广告效果衡量、分析、安全和防欺诈。FileZen 当前不请求 App Tracking Transparency 权限，也不主动请求访问 IDFA；Google 实际可用的标识符仍取决于 iOS 设置、Google SDK 行为和您所在地区适用的同意选择。</p>
         <p>详情请参阅 <a href="https://policies.google.com/technologies/ads">Google 如何将信息用于广告</a>和 <a href="https://policies.google.com/privacy">Google 隐私权政策</a>。</p>
 
-        <h2>6. 信息共享与开发者访问</h2>
+        <h2>7. 信息共享与开发者访问</h2>
         <p>开发者不会出售您的文件、账号信息或连接凭据，也无法远程访问仅保存在应用容器或 Keychain 中的数据。仅在实现您主动请求的功能所必需时，数据才会发送给：</p>
         <ul>
             <li>您选择的远程服务器或云服务提供方。</li>
@@ -196,18 +223,19 @@
         </ul>
         <p>运行日志默认留在设备上，只有在您主动通过系统分享、邮件等方式发送时，接收方才能获得您选择提供的内容。</p>
 
-        <h2>7. 保留、删除与您的选择</h2>
+        <h2>8. 保留、删除与您的选择</h2>
         <ul>
-            <li>服务器配置和对应 Keychain 令牌会保留到您删除该服务器；删除云盘服务器也会删除其刷新令牌。</li>
-            <li>上传下载记录会保留到您删除记录；缓存和预览文件会保留到应用自动清理、您在缓存管理中清理或卸载应用。</li>
+            <li>服务器配置和对应的 Keychain 密码或令牌会保留到您删除该服务器；删除服务器也会删除其对应的已存储凭据。</li>
+            <li>上传、下载、同步、备份、收藏和最近打开记录会保留到您主动删除、适用的应用内保留上限清理旧记录，或卸载 FileZen。删除本地任务或记录不会撤销已经完成的远程上传、复制、移动或删除。</li>
+            <li>缓存、预览和临时文件会保留到应用自动清理、您在缓存管理中清理或卸载应用。普通文件上传载荷可能在暂停、失败或取消后保留以供重试，并在上传成功或删除记录后清理。</li>
             <li>您可以在 FileZen 中删除服务器配置、传输记录、本地文件和缓存，以移除本地数据。</li>
             <li>如需删除已上传到第三方的文件、注销第三方账号、撤回云盘授权，或管理服务端日志与广告数据，请使用对应提供方提供的控制方式。</li>
         </ul>
 
-        <h2>8. 儿童与敏感内容</h2>
+        <h2>9. 儿童与敏感内容</h2>
         <p>FileZen 并非专门面向 13 岁以下儿童。未成年人应在监护人指导下使用。请谨慎选择是否通过远程服务、后台上传、系统分享或广告功能处理个人、机密或其他敏感内容。</p>
 
-        <h2>9. 政策变更与联系</h2>
+        <h2>10. 政策变更与联系</h2>
         <p>当应用功能、第三方 SDK、数据处理方式或法律要求发生变化时，我们可能更新本政策。当前生效日期会显示在本页面和应用内。</p>
         <p>如有隐私问题或报告，请联系：</p>
         <ul>
